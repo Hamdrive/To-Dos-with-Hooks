@@ -70,22 +70,22 @@ function App() {
       </div>
       <footer>
         <span className="footertext">
-          C 2021 Made by Hamza{"  "}|{"  "}Connect with me:
+          Made by Hamza{"  "}|{"  "}Connect with me:
         </span>
-        <div className="twitterlogo">
-          <IconContext.Provider
-            className="twitterlogo"
-            value={{ color: "#1DA1F2", size: "1.75rem" }}>
+        <div >
+          <IconContext.Provider value={{ color: "#1DA1F2", size: "1.75rem" }}>
             <a href="https://twitter.com/itsHamhere">
-              <FaTwitter />
+              <FaTwitter className="twitterlogo" />
             </a>
           </IconContext.Provider>
         </div>
-        <IconContext.Provider value={{ color: "#24292e", size: "1.75rem" }}>
-          <a href="https://github.com/Hamdrive">
-            <FaGithub />
-          </a>
-        </IconContext.Provider>
+        <div>
+          <IconContext.Provider value={{ color: "#24292e", size: "1.75rem" }}>
+            <a href="https://github.com/Hamdrive">
+              <FaGithub className="githublogo" />
+            </a>
+          </IconContext.Provider>
+        </div>
       </footer>
     </div>
   );

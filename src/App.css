@@ -129,13 +129,109 @@ footer .footertext{
   } 
 }
 
-
-
 @media screen and (max-width: 900px) {
   .complete{
     margin-right: 0.5rem;
   }  
 }
+
+@media screen and (max-width: 600px){
+  .todomain{
+    width: 95vw;
+  }
+  .title{
+  font-size: 40px;
+  margin-bottom: 3.5rem;
+  }
+  .todoinput{
+    width: 80%;
+    margin-left: 5rem;
+  }
+  .todoinput input{
+    font-size: 24px;
+  }
+  .todoitem{
+  margin-bottom: 2rem;
+  font-size: 28px;
+  }
+  .todolistitem{
+    width: 85%;
+    margin: 0 auto;
+    overflow-wrap: break-word;
+  }
+  .todolistitem s, .todolistitem p{
+    padding-left: 2rem;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .todomain{
+    width: 95vw;
+  }
+  .title{
+  font-size: 35px;
+  margin-bottom: 3rem;
+  }
+  .todoinput{
+    width: 90%;
+    margin-left: 0.5rem;
+    margin-right: 0;
+    
+  }
+  .todoinput input{
+    width: 88%;
+  }
+  .addtodo{
+    margin-left: 0;
+  }
+  .todoinput input{
+    font-size: 24px;
+    margin-bottom: 3.5rem;
+  }
+  .todos{
+    width: 90%;
+  }
+  .todoitem{
+  margin-bottom: 2rem;
+  font-size: 24px;
+  width: 100%;
+  }
+  .todolistitem{
+    width: 95%;
+    margin: 0 auto;
+    overflow-wrap: break-word;
+    
+  }
+  .todolistitem s, .todolistitem p{
+    padding-left: 0.5rem;
+    
+  }
+  footer{
+    height: 1.5rem;
+    background-color: #f2cc8f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  footer .footertext{
+    color: #14213d;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Raleway', sans-serif;
+    margin-right: 0.5rem;
+  }
+
+  .twitterlogo{
+    margin-right: 0.5rem;
+  }
+  .twitterlogo, .githublogo{
+    width: 1.1rem;
+    height: 1.1rem;
+
+  }
+}
+
 
 
 
