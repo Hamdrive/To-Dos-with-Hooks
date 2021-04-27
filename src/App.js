@@ -54,7 +54,7 @@ function App() {
     })
   }
 
-  const toDoComplete = (id) =>
+  const toDoComplete = (id, isComplete) => {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
@@ -67,9 +67,16 @@ function App() {
       })
     );
 
+    db.collection("todos").doc(id).update({
+      isComplete: !isComplete,
+    });
+  }
+
   const removeToDo = (id) => {
     const newToDoList = todos.filter((todo) => todo.id !== id);
     setTodos(newToDoList);
+
+    db.collection("todos").doc(id).delete();
   };
 
   return (
@@ -85,6 +92,7 @@ function App() {
               key={uniqid()}
               index={index}
               todo={todo}
+              isComplete={todo.isComplete}
               toDoComplete={toDoComplete}
               removeToDo={removeToDo}
             />

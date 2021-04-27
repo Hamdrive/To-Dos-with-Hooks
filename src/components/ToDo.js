@@ -2,9 +2,13 @@ import React from "react"
 import { FaTrash, FaCheck } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
-const ToDo = ({ todo, toDoComplete, removeToDo }) => {
+const ToDo = ({ todo, toDoComplete, removeToDo, isComplete }) => {
   const handleCompleteTask = () =>{
-    toDoComplete(todo.id)
+    toDoComplete(todo.id, isComplete)
+  }
+
+  const handleRemoveTask = () =>{
+    removeToDo(todo.id)
   }
 
   return (
@@ -27,7 +31,7 @@ const ToDo = ({ todo, toDoComplete, removeToDo }) => {
       </div>
 
       <div className="delete">
-        <p className="deletebtn" onClick={() => removeToDo(todo.id)}>
+        <p className="deletebtn" onClick={() => handleRemoveTask()}>
           <IconContext.Provider value={{ color: "red" }}>
             <FaTrash />
           </IconContext.Provider>
