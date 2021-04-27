@@ -34,6 +34,10 @@ const ToDoForm = ({ addToDo }) => {
         value={todoitem}
         onChange={(e) => setTodoitem(e.target.value)}
         placeholder={placeholderArray[placeholderText]}
+        onFocus={(e) => (e.target.placeholder = "")}
+        onBlur={(e) =>
+          (e.target.placeholder = placeholderArray[placeholderText])
+        }
       />
       <p className="addtodo" onClick={createToDo}>
         <IconContext.Provider value={{ color: "#14213d" }}>
