@@ -1,5 +1,5 @@
 import React from "react"
-import { FaTrash, FaCheck } from "react-icons/fa";
+import { FaTrash, FaCheck, FaUndo } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
 const ToDo = ({ todo, toDoComplete, removeToDo, isComplete }) => {
@@ -24,9 +24,15 @@ const ToDo = ({ todo, toDoComplete, removeToDo, isComplete }) => {
 
       <div className="complete">
         <p className="completebtn" onClick={() => handleCompleteTask()}>
-          <IconContext.Provider value={{ color: "green" }}>
-            <FaCheck />
-          </IconContext.Provider>
+          {isComplete ? (
+            <IconContext.Provider value={{ color: "blue" }}>
+              <FaUndo />
+            </IconContext.Provider>
+          ) : (
+            <IconContext.Provider value={{ color: "green" }}>
+              <FaCheck />
+            </IconContext.Provider>
+          )}
         </p>
       </div>
 
