@@ -10,7 +10,11 @@ const ToDo = ({ todo, toDoComplete, removeToDo }) => {
   return (
     <div className="todoitem">
       <div className="todolistitem">
-        {todo.isComplete === true ? <s>{todo.text}</s> : <p>{todo.text}</p>}
+        {todo.isComplete === true ? (
+          <s>{todo.todoitem}</s>
+        ) : (
+          <p>{todo.todoitem}</p>
+        )}
         {console.log(todo)}
       </div>
 

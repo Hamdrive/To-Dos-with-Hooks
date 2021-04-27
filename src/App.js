@@ -16,6 +16,8 @@ function App() {
     if (storedToDos) {
       setTodos(storedToDos);
     }
+
+    getTodosFromFirebase();
   }, []);
 
   useEffect(() => {
@@ -33,12 +35,24 @@ function App() {
     setTodos(newToDoList);
 
     db.collection("todos").add({
-      id : uniqid(),
-      isComplete : false,
-      timestamp : firebase.firestore.FieldValue.serverTimestamp(),
-      todo_item : todoitem,
-    })
+      isComplete: false,
+      timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+      toDoItem: todoitem,
+      uniqueId: uniqid(),
+    });
   };
+
+  const getTodosFromFirebase = () =>{
+    db.collection("todos").onSnapshot(function(query) {
+      setTodos(
+        query.docs.map((doc) => ({
+          id: doc.id, //this id is to navigate through collection when we want to delete a todo
+          todoitem: doc.data().toDoItem,
+          isComplete: doc.data().isComplete,
+        }))
+      );
+    })
+  }
 
   const toDoComplete = (id) =>
     setTodos(
