@@ -5,6 +5,8 @@ import uniqid from "uniqid";
 import "./App.css";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import {db} from "./components/firebase"
+import firebase from "firebase"
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -29,6 +31,13 @@ function App() {
       { id: uniqid(), isComplete: false, text: todoitem },
     ];
     setTodos(newToDoList);
+
+    db.collection("todos").add({
+      id : uniqid(),
+      isComplete : false,
+      timestamp : firebase.firestore.FieldValue.serverTimestamp(),
+      todo_item : todoitem,
+    })
   };
 
   const toDoComplete = (id) =>
