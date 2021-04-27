@@ -1,15 +1,15 @@
-import React from "react"
+import React from "react";
 import { FaTrash, FaCheck, FaUndo } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
 const ToDo = ({ todo, toDoComplete, removeToDo, isComplete }) => {
-  const handleCompleteTask = () =>{
-    toDoComplete(todo.id, isComplete)
-  }
+  const handleCompleteTask = () => {
+    toDoComplete(todo.id, isComplete);
+  };
 
-  const handleRemoveTask = () =>{
-    removeToDo(todo.id)
-  }
+  const handleRemoveTask = () => {
+    removeToDo(todo.id);
+  };
 
   return (
     <div className="todoitem">
@@ -47,4 +47,4 @@ const ToDo = ({ todo, toDoComplete, removeToDo, isComplete }) => {
   );
 };
 
-export default ToDo
+export default ToDo;
