@@ -3,15 +3,41 @@ import { auth } from "./components/FireBase";
 import firebase from "firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ToDoLayout from "./components/ToDoLayout";
+import { FaGithub, FaTwitter } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 const signInGoogle = () =>
   auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
 
 const SignIn = () => {
   return (
-    <div>
-      <button onClick={signInGoogle}>SignUp with Google</button>
-    </div>
+    <>
+      <div className="app">
+        <div className="todomain">
+          <label className="title"> TO DO LIST 📝</label>
+          <button onClick={signInGoogle}>SignUp with Google</button>
+        </div>
+        <footer>
+          <span className="footertext">
+            Made by Hamza{"  "}|{"  "}Connect with me:
+          </span>
+          <div>
+            <IconContext.Provider value={{ color: "#1DA1F2", size: "1.75rem" }}>
+              <a href="https://twitter.com/itsHamhere">
+                <FaTwitter className="twitterlogo" />
+              </a>
+            </IconContext.Provider>
+          </div>
+          <div>
+            <IconContext.Provider value={{ color: "#24292e", size: "1.75rem" }}>
+              <a href="https://github.com/Hamdrive">
+                <FaGithub className="githublogo" />
+              </a>
+            </IconContext.Provider>
+          </div>
+        </footer>
+      </div>
+    </>
   );
 };
 
