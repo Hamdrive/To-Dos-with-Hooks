@@ -37,7 +37,7 @@ const ToDoLayout = () => {
       // ];
       // setTodos(newToDoList);
 
-      db.collection("todos").add({
+      todoUserRef.add({
         isComplete: false,
         timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
         toDoItem: todoitem,
@@ -46,7 +46,7 @@ const ToDoLayout = () => {
     };
 
     const getTodosFromFirebase = () => {
-      db.collection("todos").onSnapshot(function (query) {
+      todoUserRef.onSnapshot(function (query) {
         setTodos(
           query.docs.map((doc) => ({
             id: doc.id, //this id is to navigate through collection when we want to delete a todo
@@ -70,7 +70,7 @@ const ToDoLayout = () => {
       //   })
       // );
 
-      db.collection("todos").doc(id).update({
+      todoUserRef.doc(id).update({
         isComplete: !isComplete,
       });
     };
@@ -79,7 +79,7 @@ const ToDoLayout = () => {
       // const newToDoList = todos.filter((todo) => todo.id !== id);
       // setTodos(newToDoList);
 
-      db.collection("todos").doc(id).delete();
+      todoUserRef.doc(id).delete();
     };
 
     const handleOnClick = async () => {
@@ -89,6 +89,9 @@ const ToDoLayout = () => {
     };
 
     const signOutGoogle = () => auth.signOut()
+    const todoUserRef = db.collection(`users/${auth.currentUser.uid}/todos`)
+
+
 
   return (
     <div className="app">
