@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import ToDoLayout from "./components/ToDoLayout";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import GoogleButton from "react-google-button";
 
 const signInGoogle = () =>
   auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
@@ -15,7 +16,7 @@ const SignIn = () => {
       <div className="app">
         <div className="todomain">
           <label className="title"> TO DO LIST 📝</label>
-          <button onClick={signInGoogle}>SignUp with Google</button>
+          <GoogleButton onClick={signInGoogle}/>
         </div>
         <footer>
           <span className="footertext">
