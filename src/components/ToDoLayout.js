@@ -7,7 +7,6 @@ import { FaGithub, FaTwitter } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { auth, db } from "./FireBase";
 import firebase from "firebase";
-import googleAuth from "./userAuth";
 
 
 const ToDoLayout = () => {
@@ -15,28 +14,10 @@ const ToDoLayout = () => {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-      // let storedToDos = JSON.parse(localStorage.getItem("react-todos"));
-      // if (storedToDos) {
-      //   setTodos(storedToDos);
-      // }
-
       getTodosFromFirebase();
     }, []);
 
-    // useEffect(() => {
-    //   localStorage.setItem("react-todos", JSON.stringify(todos));
-    // }, [todos]);
-
     const addToDo = (todoitem) => {
-      // if (!todoitem) {
-      //   return;
-      // }
-      // const newToDoList = [
-      //   ...todos,
-      //   { id: uniqid(), isComplete: false, text: todoitem },
-      // ];
-      // setTodos(newToDoList);
-
       todoUserRef.add({
         isComplete: false,
         timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -58,83 +39,60 @@ const ToDoLayout = () => {
     };
 
     const toDoComplete = (id, isComplete) => {
-      // setTodos(
-      //   todos.map((todo) => {
-      //     if (todo.id === id) {
-      //       return {
-      //         ...todo,
-      //         isComplete: !todo.isComplete,
-      //       };
-      //     }
-      //     return todo;
-      //   })
-      // );
-
       todoUserRef.doc(id).update({
         isComplete: !isComplete,
       });
     };
 
     const removeToDo = (id) => {
-      // const newToDoList = todos.filter((todo) => todo.id !== id);
-      // setTodos(newToDoList);
-
       todoUserRef.doc(id).delete();
-    };
-
-    const handleOnClick = async () => {
-      const googleProvider = new firebase.auth.GoogleAuthProvider();
-      const res = await googleAuth(googleProvider);
-      console.log(res);
     };
 
     const signOutGoogle = () => auth.signOut()
     const todoUserRef = db.collection(`users/${auth.currentUser.uid}/todos`)
 
-
-
-  return (
-    <div className="app">
-      <div className="todomain">
-        <label className="title"> TO DO LIST 📝</label>
-        <button onClick={signOutGoogle}> Sign out</button>
-        <div className="todoinput">
-          <ToDoForm addToDo={addToDo} />
+    return (
+        <div className="app">
+        <div className="todomain">
+            <label className="title"> TO DO LIST 📝</label>
+            <button onClick={signOutGoogle}> Sign out</button>
+            <div className="todoinput">
+            <ToDoForm addToDo={addToDo} />
+            </div>
+            <div className="todos">
+            {todos.map((todo, index) => (
+                <ToDo
+                key={uniqid()}
+                index={index}
+                todo={todo}
+                isComplete={todo.isComplete}
+                toDoComplete={toDoComplete}
+                removeToDo={removeToDo}
+                />
+            ))}
+            </div>
         </div>
-        <div className="todos">
-          {todos.map((todo, index) => (
-            <ToDo
-              key={uniqid()}
-              index={index}
-              todo={todo}
-              isComplete={todo.isComplete}
-              toDoComplete={toDoComplete}
-              removeToDo={removeToDo}
-            />
-          ))}
+        <footer>
+            <span className="footertext">
+            Made by Hamza{"  "}|{"  "}Connect with me:
+            </span>
+            <div>
+            <IconContext.Provider value={{ color: "#1DA1F2", size: "1.75rem" }}>
+                <a href="https://twitter.com/itsHamhere">
+                <FaTwitter className="twitterlogo" />
+                </a>
+            </IconContext.Provider>
+            </div>
+            <div>
+            <IconContext.Provider value={{ color: "#24292e", size: "1.75rem" }}>
+                <a href="https://github.com/Hamdrive">
+                <FaGithub className="githublogo" />
+                </a>
+            </IconContext.Provider>
+            </div>
+        </footer>
         </div>
-      </div>
-      <footer>
-        <span className="footertext">
-          Made by Hamza{"  "}|{"  "}Connect with me:
-        </span>
-        <div>
-          <IconContext.Provider value={{ color: "#1DA1F2", size: "1.75rem" }}>
-            <a href="https://twitter.com/itsHamhere">
-              <FaTwitter className="twitterlogo" />
-            </a>
-          </IconContext.Provider>
-        </div>
-        <div>
-          <IconContext.Provider value={{ color: "#24292e", size: "1.75rem" }}>
-            <a href="https://github.com/Hamdrive">
-              <FaGithub className="githublogo" />
-            </a>
-          </IconContext.Provider>
-        </div>
-      </footer>
-    </div>
-  );
+    );
 };
 
 export default ToDoLayout;
