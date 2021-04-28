@@ -1,5 +1,5 @@
 import "./App.css";
-import { auth } from "./components/FireBase";
+import { auth } from "./components/fbAuth";
 import firebase from "firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ToDoLayout from "./components/ToDoLayout";

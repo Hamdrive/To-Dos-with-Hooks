@@ -5,7 +5,7 @@ import uniqid from "uniqid";
 import "../App.css";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { auth, db } from "./FireBase";
+import { auth, db } from "./fbAuth";
 import firebase from "firebase";
 
 
