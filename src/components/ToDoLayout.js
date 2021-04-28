@@ -5,7 +5,7 @@ import uniqid from "uniqid";
 import "../App.css";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { db } from "./FireBase";
+import { auth, db } from "./FireBase";
 import firebase from "firebase";
 import googleAuth from "./userAuth";
 
@@ -88,11 +88,13 @@ const ToDoLayout = () => {
       console.log(res);
     };
 
+    const signOutGoogle = () => auth.signOut()
+
   return (
     <div className="app">
       <div className="todomain">
         <label className="title"> TO DO LIST 📝</label>
-        {/* <button onClick={handleOnClick}> Sign up/ Login</button> */}
+        <button onClick={signOutGoogle}> Sign out</button>
         <div className="todoinput">
           <ToDoForm addToDo={addToDo} />
         </div>
