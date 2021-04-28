@@ -15,6 +15,7 @@ const ToDoLayout = () => {
 
     useEffect(() => {
       getTodosFromFirebase();
+      // eslint-disable-next-line
     }, []);
 
     const addToDo = (todoitem) => {
@@ -52,46 +53,48 @@ const ToDoLayout = () => {
     const todoUserRef = db.collection(`users/${auth.currentUser.uid}/todos`)
 
     return (
-        <div className="app">
+      <div className="app">
+        <div className="signoutbtn">
+          <button onClick={signOutGoogle}> Sign out</button>
+        </div>
         <div className="todomain">
-            <label className="title"> TO DO LIST 📝</label>
-            <button onClick={signOutGoogle}> Sign out</button>
-            <div className="todoinput">
+          <label className="title"> TO DO LIST 📝</label>
+          <div className="todoinput">
             <ToDoForm addToDo={addToDo} />
-            </div>
-            <div className="todos">
+          </div>
+          <div className="todos">
             {todos.map((todo, index) => (
-                <ToDo
+              <ToDo
                 key={uniqid()}
                 index={index}
                 todo={todo}
                 isComplete={todo.isComplete}
                 toDoComplete={toDoComplete}
                 removeToDo={removeToDo}
-                />
+              />
             ))}
-            </div>
+          </div>
         </div>
         <footer>
-            <span className="footertext">
+          <span className="footertext">
             Made by Hamza{"  "}|{"  "}Connect with me:
-            </span>
-            <div>
+          </span>
+          <div>
             <IconContext.Provider value={{ color: "#1DA1F2", size: "1.75rem" }}>
-                <a href="https://twitter.com/itsHamhere">
+              <a href="https://twitter.com/itsHamhere">
                 <FaTwitter className="twitterlogo" />
-                </a>
+              </a>
             </IconContext.Provider>
-            </div>
-            <div>
+          </div>
+          <div>
             <IconContext.Provider value={{ color: "#24292e", size: "1.75rem" }}>
-                <a href="https://github.com/Hamdrive">
+              <a href="https://github.com/Hamdrive">
                 <FaGithub className="githublogo" />
-                </a>
+              </a>
             </IconContext.Provider>
-            </div>
+          </div>
         </footer>
-        </div>
+      </div>
     );
 };
 
