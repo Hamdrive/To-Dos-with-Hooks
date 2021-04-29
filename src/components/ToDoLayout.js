@@ -6,7 +6,7 @@ import "../App.css";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { auth, db } from "./fbAuth";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 
 const ToDoLayout = () => {
@@ -54,8 +54,11 @@ const ToDoLayout = () => {
 
     return (
       <div className="app">
-        <div className="signoutbtn">
-          <button onClick={signOutGoogle}> Sign out</button>
+        <div className="signout">
+          <button className="signoutbtn" onClick={signOutGoogle}>
+            {" "}
+            Sign out
+          </button>
         </div>
         <div className="todomain">
           <label className="title"> TO DO LIST 📝</label>
